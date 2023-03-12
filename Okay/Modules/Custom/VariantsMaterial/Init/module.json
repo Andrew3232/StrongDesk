@@ -1,0 +1,69 @@
+{
+  "Okay": "4.3.1",
+  "version": "1.0.0",
+  "moduleName": "Матеріал цв'яхів товара",
+  "vendor": {
+    "email": "work.oleinitch@gmail.com",
+    "site": ""
+  },
+  "modifications": {
+    "backend": [
+      {
+        "file": "order.tpl",
+        "changes": [
+          {
+            "find": "{if $purchase->product}",
+            "appendAfter": "{get_design_block block = \"order_variant_material\" vars=['variant' => $purchase->variant]}"
+          }
+        ]
+      }
+    ],
+    "front": [
+      {
+        "file": "product.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"details_boxed__select",
+            "appendBefore": "{get_variants_material product=$product}"
+          }
+        ]
+      },
+      {
+        "file": "product_list.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"product_preview__variants",
+            "appendAfter": "{get_variants_material type='product_list' product=$product}"
+          }
+        ]
+      },
+      {
+        "file": "cart_purchases.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"purchase__variant_prop\">",
+            "prepend": "{get_cart_purchases_material purchase = $purchase}"
+          }
+        ]
+      },
+      {
+        "file": "pop_up_cart.tpl",
+        "changes": [
+          {
+            "find": "{if $purchase->variant->stock == 0}",
+            "appendBefore": "{get_cart_purchases_material purchase = $purchase}"
+          }
+        ]
+      },
+      {
+        "file": "order.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"purchase__variant_prop\">",
+            "prepend": "{get_order_purchases_material purchase = $purchase}"
+          }
+        ]
+      }
+    ]
+  }
+}

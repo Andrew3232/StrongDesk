@@ -1,0 +1,1 @@
+{if $variant->material}<div class="mt-q font_12"><span class="text_grey" data-language="product_variant">{$btr->custom_variant_material}:</span>{$material_associations[$variant->material]->name}</div>{/if}
