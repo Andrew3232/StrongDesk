@@ -1,0 +1,1 @@
+{if $shape_purchase->variant->shape}<div class="col"><span class="purchase__variant_prop_name">{$lang->variant_shape_title}:</span><span class="purchase__variant_prop_value">{$shape_purchase->variant->shape_name}</span></div>{/if}

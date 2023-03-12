@@ -1,0 +1,1 @@
+{if $variant->shape}<div class="mt-q font_12"><span class="text_grey" data-language="product_variant">{$btr->custom_variant_shape}:</span>{$shape_associations[$variant->shape]->name}</div>{/if}

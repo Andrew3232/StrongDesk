@@ -1,0 +1,74 @@
+{
+  "Okay": "4.3.1",
+  "version": "1.0.0",
+  "moduleName": "Форма товара",
+  "name": "Andriy Oleynich",
+  "description": "",
+  "title": "",
+  "compatibility": "",
+  "author": "",
+  "vendor": {
+    "email": "work.oleinitch@gmail.com",
+    "site": ""
+  },
+  "modifications": {
+    "backend": [
+      {
+        "file": "order.tpl",
+        "changes": [
+          {
+            "find": "{if $purchase->product}",
+            "appendAfter": "{get_design_block block = \"order_variant_shape\" vars=['variant' => $purchase->variant]}"
+          }
+        ]
+      }
+    ],
+    "front": [
+      {
+        "file": "product.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"details_boxed__offer offer_product\"",
+            "appendBefore": "{get_variants_shape product=$product}"
+          }
+        ]
+      },
+      {
+        "file": "product_list.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"product_preview__variants",
+            "appendAfter": "{get_variants_shape type='product_list' product=$product}"
+          }
+        ]
+      },
+      {
+        "file": "cart_purchases.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"purchase__variant_prop\">",
+            "append": "{get_cart_purchases_shape purchase = $purchase}"
+          }
+        ]
+      },
+      {
+        "file": "pop_up_cart.tpl",
+        "changes": [
+          {
+            "find": "{if $purchase->variant->stock == 0}",
+            "appendBefore": "{get_cart_purchases_shape purchase = $purchase}"
+          }
+        ]
+      },
+      {
+        "file": "order.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"purchase__variant_prop\">",
+            "append": "{get_order_purchases_shape purchase = $purchase}"
+          }
+        ]
+      }
+    ]
+  }
+}
