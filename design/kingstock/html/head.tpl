@@ -295,6 +295,7 @@
     <link href="{$rootUrl}/{$config->design_images|escape}{$settings->site_favicon|escape}?v={$settings->site_favicon_version|escape}" type="image/x-icon" rel="icon">
     <link href="{$rootUrl}/{$config->design_images|escape}{$settings->site_favicon|escape}?v={$settings->site_favicon_version|escape}" type="image/x-icon" rel="shortcut icon">
 
+    <script src="https://unpkg.com/imask"></script>
     {* JQuery *}
     <script>ut_tracker.start('parsing:page');</script>
 

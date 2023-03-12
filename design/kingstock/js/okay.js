@@ -126,6 +126,41 @@ function switchVariants(material, size, color, size){
 // })
 
 $(function(){
+  /* masks */
+  var phones = document.getElementsByName('phone');
+  var phoneOptions = {
+    mask: '+{38}(000)000-00-00',
+    lazy: false
+  };
+  phones.forEach(function(value)
+  {
+    IMask(value, phoneOptions);
+  })
+  var emails = document.getElementsByName('email');
+  var emailOptions = {
+      mask:function (value) {
+        if(/^[a-z0-9_\.-]+$/.test(value))
+          return true;
+        if(/^[a-z0-9_\.-]+@$/.test(value))
+          return true;
+        if(/^[a-z0-9_\.-]+@[a-z0-9-]+$/.test(value))
+          return true;
+        if(/^[a-z0-9_\.-]+@[a-z0-9-]+\.$/.test(value))
+          return true;
+        if(/^[a-z0-9_\.-]+@[a-z0-9-]+\.[a-z]{1,4}$/.test(value))
+          return true;
+        if(/^[a-z0-9_\.-]+@[a-z0-9-]+\.[a-z]{1,4}\.$/.test(value))
+          return true;
+        if(/^[a-z0-9_\.-]+@[a-z0-9-]+\.[a-z]{1,4}\.[a-z]{1,4}$/.test(value))
+          return true;
+        return false;
+      },
+      lazy: false
+  };
+  emails.forEach(function(value)
+  {
+    IMask(value, emailOptions);
+  })
 
   /* Cookies */
   let cookieExist = getCookie('username');

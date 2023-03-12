@@ -23,13 +23,13 @@
 
 			{* User's email *}
 			<div class="form__group">
-				<label class="form__group_label"> {$lang->form_email} <span>**</span></label>
+				<label class="form__group_label"> {$lang->form_email} <span>*</span></label>
 				<input class="form__input" type="email" name="email" value="{$request_data.email|escape}"
 					data-language="form_email" placeholder="{$lang->form_enter_email}" />
 			</div>
 			{* User's password *}
 			<div class="form__group">
-				<label class="form__group_label"> {$lang->form_password} <span>**</span></label>
+				<label class="form__group_label"> {$lang->form_password} <span>*</span></label>
 				<input class="form__input" type="password" name="password" value="" data-language="form_password"
 					placeholder="{$lang->form_enter_password}" />
 				{*  Remind password link *}

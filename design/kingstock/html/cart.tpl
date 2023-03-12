@@ -153,7 +153,7 @@
 														<div class="f_col-md-6 f_col-lg-12 f_col-xl-6">
 															<div class="form__group ">
 																<label class="form__group_label"> {$lang->form_name}
-																	<span>**</span></label>
+																	<span>*</span></label>
 																<input class="form__input" name="name" type="text"
 																	value="{$request_data.name|escape}" data-language="form_name"
 																	placeholder="{$lang->form_enter_name}">
@@ -183,7 +183,7 @@
 														<div class="f_col-md-6 f_col-lg-12 f_col-xl-6">
 															<div class="form__group">
 																<label class="form__group_label"> {$lang->form_email}
-																	<span>**</span></label>
+																	<span>*</span></label>
 																<input class="form__input" name="email" type="text"
 																	value="{$request_data.email|escape}" data-language="form_email"
 																	placeholder="{$lang->form_enter_email}">
