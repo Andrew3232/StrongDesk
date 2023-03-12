@@ -1,0 +1,10 @@
+.idea
+/compiled/
+/vendor/
+/cache/
+/js/
+/css/
+/config/config.local.php
+/backend/design/compiled/
+/node_modules/
+/Okay/log/

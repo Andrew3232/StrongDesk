@@ -1,0 +1,11 @@
+{
+  "userName": "Михайло",
+  "userEmail": "vladdidukh52@gmail.com",
+  "Okay": "4.3.1",
+  "version": "1.0.2",
+  "moduleName": "Приём платежей через Монобанк",
+  "vendor": {
+    "email": "vitalisoft11@gmail.com",
+    "site": "https://okay-cms.com"
+  }
+}

@@ -1,0 +1,170 @@
+.products_block__slider {
+	.product_item {
+		margin: 0;
+	}
+}
+.product_item {
+	height: 400px;
+}
+.product_preview {
+	// .product_preview__center
+	&__center {
+	}
+	// .product_preview__image
+	&__image {
+		@media (any-hover: hover) {
+			&:hover {
+				.actions_preview__item {
+					transform: scaleX(1) translateX(0px);
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+		}
+	}
+	// .product_preview__no_image
+	&__no_image {
+	}
+	// .product_preview__name
+	&__name {
+	}
+	// .product_preview__name_link
+	&__name_link {
+	}
+	// .product_preview__sku
+	&__sku {
+	}
+	// .product_preview__prices
+	&__prices {
+	}
+	// .product_preview__bottom
+	&__bottom {
+	}
+	// .product_preview__buttons
+	&__buttons {
+	}
+	// .product_preview__out_stock
+	&__out_stock {
+	}
+	// .product_preview__button
+	&__button {
+		// .product_preview__button--pre_order
+		&--pre_order {
+		}
+		// .product_preview__button--buy
+		&--buy {
+		}
+	}
+	// .product_preview__button_text
+	&__button_text {
+	}
+	// .product_preview__variants
+	&__variants {
+	}
+	// .product_preview__annotation
+	&__annotation {
+	}
+}
+
+.stickers {
+}
+.sticker {
+	// .sticker--hit
+	&--hit {
+	}
+	// .sticker--discount
+	&--discount {
+	}
+	// .sticker--special
+	&--special {
+	}
+	// .sticker__image
+	&__image {
+	}
+}
+
+.product_preview {
+	// .product_preview__actions
+	&__actions {
+	}
+}
+.actions_preview {
+	position: absolute;
+	left: 50%;
+	bottom: 20px;
+	transform: translate(-50%, 0px);
+	z-index: 5;
+
+	// .actions_preview__list
+	&__list {
+		display: flex;
+		gap: 8px;
+		margin: 0;
+		padding: 0;
+	}
+	// .actions_preview__item
+	&__item {
+		width: 40px;
+		font-size: 15px;
+		flex: 0 0 40px;
+		height: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #fff;
+		position: relative;
+		transition: all 0.3s ease 0s;
+		margin: 0;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		@media (any-hover: hover) {
+			opacity: 0;
+			visibility: hidden;
+			transform: scaleX(0) translateX(-45px);
+			transform-origin: left;
+		}
+		a {
+			width: 100% !important;
+			height: 100% !important;
+		}
+		svg {
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: $redColor;
+				a,
+				button {
+					color: #fff;
+				}
+				svg {
+					stroke: #fff;
+				}
+			}
+		}
+		// .actions_preview__button
+		&__button {
+		}
+		span[data-language="fast_order"] {
+			display: none;
+		}
+		a,
+		button {
+			cursor: pointer;
+			border: none;
+			background: transparent;
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+			justify-content: center;
+			height: 100%;
+			width: 100%;
+			color: #222;
+			transition: all 0.3s ease 0s;
+		}
+	}
+}

@@ -1,0 +1,3 @@
+php_value post_max_size 20000M
+order deny,allow
+deny from all
