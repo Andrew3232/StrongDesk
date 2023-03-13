@@ -5,6 +5,9 @@
 /js/
 /css/
 /config/config.local.php
-/backend/design/compiled/
 /node_modules/
+/backend/design/compiled/
+/backend/files/export/export.csv
+/backend/files/import/import.csv
 /Okay/log/
+/Okay/xml/compiled/
