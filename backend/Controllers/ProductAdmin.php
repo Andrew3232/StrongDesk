@@ -34,7 +34,7 @@ class ProductAdmin extends IndexAdmin
         if ($this->request->method('post') && !empty($_POST)) {
 
             $product           = $productRequest->postProduct();
-            $productVariants   = $productRequest->postVariants();
+//            $productVariants   = $productRequest->postVariants();
             $productCategories = $productRequest->postCategories();
             $relatedProducts   = $productRequest->postRelatedProducts();
 
@@ -62,9 +62,11 @@ class ProductAdmin extends IndexAdmin
                 $productCategories = $backendProductsHelper->prepareUpdateProductsCategories($product, $productCategories);
                 $backendProductsHelper->updateProductsCategories($product, $productCategories);
 
-                // Варианты
-                $productVariants = $backendVariantsHelper->prepareUpdateVariants($productVariants);
-                $backendVariantsHelper->updateVariants($product, $productVariants);
+	            // Варианты
+	            if(!empty($productVariants)){
+		            $productVariants = $backendVariantsHelper->prepareUpdateVariants($productVariants);
+		            $backendVariantsHelper->updateVariants($product, $productVariants);
+	            }
 
                 // Картинки
                 $images        = $productRequest->postImages();
@@ -120,6 +122,11 @@ class ProductAdmin extends IndexAdmin
         if (empty($product->brand_id) && $brand_id = $this->request->get('brand_id')) {
             $product->brand_id = $brand_id;
         }
+
+		if(empty($productVariants))
+		{
+			$productVariants = $backendVariantsHelper->findProductVariants($product);
+		}
 
         $this->design->assign('product',            $product);
         $this->design->assign('special_images',     $specialImages);
