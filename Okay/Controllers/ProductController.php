@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Okay\Controllers;
-
 
 use Okay\Core\BrowsedProducts;
 use Okay\Core\Router;
@@ -73,7 +71,7 @@ class ProductController extends AbstractController
         
         // Связанные товары
         $relatedProducts = $relatedProductsHelper->getRelatedProductsList($productsEntity, ['product_id' => $product->id]);
-        $this->design->assign('related_products', $relatedProducts);
+        $this->design->assign('related', $relatedProducts);
 
         //Связянные статьи для товара
         $relatedPosts = $blogEntity->getRelatedProducts(['product_id' => $product->id]);
@@ -93,10 +91,13 @@ class ProductController extends AbstractController
         if (!empty($brand) && $brand->visible) {
             $this->design->assign('brand', $brand);
         }
-        
-        $category = $categoriesEntity->get((int)$product->main_category_id);
-        $this->design->assign('category', $category);
 
+		if((int)$product->main_category_id)
+		{
+			$category = $categoriesEntity->get((int)$product->main_category_id);
+			$this->design->assign('category', $category);
+		}
+		
         // Соседние товары
         if (!empty($category)) {
             $neighborsProducts = $productsEntity->getNeighborsProducts($category->id, $product->position);
