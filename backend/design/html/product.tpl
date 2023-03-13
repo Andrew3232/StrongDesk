@@ -246,7 +246,7 @@
                         </i>
                     </div>
                     <div class="">
-                        <select name="brand_id" class="selectpicker form-control mb-1{if !$brands} hidden{/if} fn_meta_brand" data-live-search="true">
+                        <select name="brand_id" class="form-control mb-1{if !$brands} hidden{/if} fn_meta_brand" data-live-search="true">
                             <option value="0" {if !$product->brand_id}selected=""{/if} data-brand_name="">{$btr->general_not_set|escape}</option>
                             {foreach $brands as $brand}
                             <option value="{$brand->id}" {if $product->brand_id == $brand->id}selected=""{/if} data-brand_name="{$brand->name|escape}">{$brand->name|escape}</option>
@@ -264,7 +264,7 @@
                     </div>
                     <div id="product_cats" class="clearfix">
                         {assign var ='first_category' value=reset($product_categories)}
-                        <select class="selectpicker form-control  mb-1 fn_product_category fn_meta_categories" data-live-search="true">
+                        <select class="form-control  mb-1 fn_product_category fn_meta_categories" data-live-search="true">
                             <option value="0" selected="" data-category_name="">{$btr->product_select_category}</option>
                             {function name=category_select level=0}
                                 {foreach $categories as $category}
@@ -294,121 +294,6 @@
                     </div>
                 </div>
                 {get_design_block block="product_relations"}
-            </div>
-        </div>
-    </div>
-
-    {*Варианты товара*}
-    <div class="row">
-        <div class="col-lg-12 col-md-12 ">
-            <div class="fn_step-8 boxed fn_toggle_wrap match_matchHeight_true">
-                <div class="heading_box">
-                    {$btr->general_options|escape}
-                    <i class="fn_tooltips" title="{$btr->tooltip_general_options|escape}">
-                        {include file='svg_icon.tpl' svgId='icon_tooltips'}
-                    </i>
-                    <div class="toggle_arrow_wrap fn_toggle_card text-primary">
-                        <a class="btn-minimize" href="javascript:;" ><i class="fa fn_icon_arrow fa-angle-down"></i></a>
-                    </div>
-                </div>
-
-                <div class="variants_wrapper fn_card">
-                    <div class="okay_list variants_list scrollbar-variant">
-                        <div class="okay_list_body sortable variants_listadd">
-                            {foreach $product_variants as $variant}
-                                <div class="okay_list_body_item variants_list_item ">
-                                    <div class="okay_list_row">
-                                        <div class="okay_list_boding variants_item_drag">
-                                            <div class="heading_label"></div>
-                                            <div class="move_zone">
-                                                {include file='svg_icon.tpl' svgId='drag_vertical'}
-                                            </div>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_name" style="max-width: 80px;">
-                                            <div class="heading_label">{$btr->general_option_id|escape}</div>
-                                            <span class="variant_input">{$variant->id|escape}</span>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_sku">
-                                            <div class="heading_label">
-                                                {$btr->general_sku|escape}
-                                                <i class="fn_tooltips" title="{$btr->tooltip_general_sku|escape}">
-                                                    {include file='svg_icon.tpl' svgId='icon_tooltips'}
-                                                </i>
-                                            </div>
-                                            <input class="variant_input" name="variants[sku][]" type="text" value="{$variant->sku|escape}"/>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_name">
-                                            <div class="heading_label">{$btr->general_option_name|escape}</div>
-                                            <input name="variants[id][]" type="hidden" value="{$variant->id|escape}" />
-                                            <input class="variant_input" name="variants[name][]" type="text" value="{$variant->name|escape}" />
-                                        </div>
-                                        <div class="okay_list_boding variants_item_price">
-                                            <div class="heading_label">{$btr->general_price|escape}</div>
-                                            <input class="variant_input" name="variants[price][]" type="text" value="{$variant->price|escape}"/>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_discount">
-                                            <div class="heading_label">{$btr->general_old_price|escape}</div>
-                                            <input class="variant_input" name="variants[compare_price][]" type="text" value="{$variant->compare_price|escape}"/>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_currency">
-                                            <div class="heading_label">{$btr->general_currency|escape}</div>
-                                            <select name="variants[currency_id][]" class="selectpicker form-control">
-                                                {foreach $currencies as $c}
-                                                    <option value="{$c->id}" {if $c->id == $variant->currency_id}selected=""{/if}>{$c->code|escape}</option>
-                                                {/foreach}
-                                            </select>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_weight">
-                                            <div class="heading_label">
-                                                {$btr->general_weight|escape}
-                                                <i class="fn_tooltips" title="{$btr->tooltip_general_weight|escape}">
-                                                    {include file='svg_icon.tpl' svgId='icon_tooltips'}
-                                                </i>
-                                            </div>
-                                            <input class="variant_input" name="variants[weight][]" type="text" value="{$variant->weight|escape}"/>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_amount">
-                                            <div class="heading_label">{$btr->general_qty|escape}</div>
-                                            <input class="variant_input" name="variants[stock][]" type="text" value="{if $variant->infinity}∞{else}{$variant->stock|escape}{/if}"/>
-                                        </div>
-                                        <div class="okay_list_boding variants_item_units">
-                                            <div class="heading_label">{$btr->products_variant_units|escape}</div>
-                                            <input class="variant_input" name="variants[units][]" type="text" value="{$variant->units|escape}"/>
-                                        </div>
-                                        {if !$variant@first}
-                                        <div class="okay_list_boding okay_list_close remove_variant">
-                                            <button data-hint="{$btr->general_delete_product|escape}" data-id="{$variant->id}" type="button" class="btn_close fn_remove_variant hint-bottom-right-t-info-s-small-mobile  hint-anim">
-                                                {include file='svg_icon.tpl' svgId='delete'}
-                                            </button>
-                                        </div>
-                                        {/if}
-                                    </div>
-
-                                    {$block = {get_design_block block="product_variant" vars=['variant' => $variant]}}
-                                    {if !empty($block)}
-                                        <div class="okay_list_row">
-                                            <div class="okay_list_boding variants_item_drag"></div>
-                                            {$block}
-                                            <div class="okay_list_boding">
-                                                <div class="heading_label"></div>
-                                                <button id="fn_variant_save" data-product_id="{$product->id}" type="button" class="fn_variant_save fn_step-15 btn btn_small btn_blue float-md-right ml-1">
-                                                    {include file='svg_icon.tpl' svgId='checked'}
-                                                    <span>Save</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    {/if}
-                                </div>
-                            {/foreach}
-                        </div>
-                    </div>
-                    <div class="box_btn_heading mt-1">
-                        <button type="button" class="btn btn_mini btn-secondary fn_add_variant">
-                            {include file='svg_icon.tpl' svgId='plus'}
-                            <span>{$btr->product_add_option|escape}</span>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -724,6 +609,122 @@
     </div>
 </form>
 
+
+{*Варианты товара*}
+<div class="row">
+    <div class="col-lg-12 col-md-12 ">
+        <div class="fn_step-8 boxed fn_toggle_wrap match_matchHeight_true">
+            <div class="heading_box">
+                {$btr->general_options|escape}
+                <i class="fn_tooltips" title="{$btr->tooltip_general_options|escape}">
+                    {include file='svg_icon.tpl' svgId='icon_tooltips'}
+                </i>
+                <div class="toggle_arrow_wrap fn_toggle_card text-primary">
+                    <a class="btn-minimize" href="javascript:;" ><i class="fa fn_icon_arrow fa-angle-down"></i></a>
+                </div>
+            </div>
+
+            <div class="variants_wrapper fn_card">
+                <div class="okay_list variants_list scrollbar-variant">
+                    <div class="okay_list_body sortable variants_listadd">
+                        {foreach $product_variants as $variant}
+                            <div class="okay_list_body_item variants_list_item ">
+                                <div class="okay_list_row">
+                                    <div class="okay_list_boding variants_item_drag">
+                                        <div class="heading_label"></div>
+                                        <div class="move_zone">
+                                            {include file='svg_icon.tpl' svgId='drag_vertical'}
+                                        </div>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_name" style="max-width: 90px;">
+                                        <div class="heading_label">{$btr->general_option_id|escape}</div>
+                                        <span class="variant_input">{$variant->id|escape}</span>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_sku">
+                                        <div class="heading_label">
+                                            {$btr->general_sku|escape}
+                                            <i class="fn_tooltips" title="{$btr->tooltip_general_sku|escape}">
+                                                {include file='svg_icon.tpl' svgId='icon_tooltips'}
+                                            </i>
+                                        </div>
+                                        <input class="variant_input" name="variants[sku][]" type="text" value="{$variant->sku|escape}"/>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_name">
+                                        <div class="heading_label">{$btr->general_option_name|escape}</div>
+                                        <input name="variants[id][]" type="hidden" value="{$variant->id|escape}" />
+                                        <input class="variant_input" name="variants[name][]" type="text" value="{$variant->name|escape}" />
+                                    </div>
+                                    <div class="okay_list_boding variants_item_price">
+                                        <div class="heading_label">{$btr->general_price|escape}</div>
+                                        <input class="variant_input" name="variants[price][]" type="text" value="{$variant->price|escape}"/>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_discount">
+                                        <div class="heading_label">{$btr->general_old_price|escape}</div>
+                                        <input class="variant_input" name="variants[compare_price][]" type="text" value="{$variant->compare_price|escape}"/>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_currency">
+                                        <div class="heading_label">{$btr->general_currency|escape}</div>
+                                        <select name="variants[currency_id][]" class="form-control">
+                                            {foreach $currencies as $c}
+                                                <option value="{$c->id}" {if $c->id == $variant->currency_id}selected=""{/if}>{$c->code|escape}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_weight">
+                                        <div class="heading_label">
+                                            {$btr->general_weight|escape}
+                                            <i class="fn_tooltips" title="{$btr->tooltip_general_weight|escape}">
+                                                {include file='svg_icon.tpl' svgId='icon_tooltips'}
+                                            </i>
+                                        </div>
+                                        <input class="variant_input" name="variants[weight][]" type="text" value="{$variant->weight|escape}"/>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_amount">
+                                        <div class="heading_label">{$btr->general_qty|escape}</div>
+                                        <input class="variant_input" name="variants[stock][]" type="text" value="{if $variant->infinity}∞{else}{$variant->stock|escape}{/if}"/>
+                                    </div>
+                                    <div class="okay_list_boding variants_item_units">
+                                        <div class="heading_label">{$btr->products_variant_units|escape}</div>
+                                        <input class="variant_input" name="variants[units][]" type="text" value="{$variant->units|escape}"/>
+                                    </div>
+                                    {if !$variant@first}
+                                        <div class="okay_list_boding okay_list_close remove_variant">
+                                            <button data-hint="{$btr->general_delete_product|escape}" data-id="{$variant->id}" type="button" class="btn_close fn_remove_variant hint-bottom-right-t-info-s-small-mobile  hint-anim">
+                                                {include file='svg_icon.tpl' svgId='delete'}
+                                            </button>
+                                        </div>
+                                    {/if}
+                                </div>
+
+                                {$block = {get_design_block block="product_variant" vars=['variant' => $variant]}}
+                                {if !empty($block)}
+                                    <div class="okay_list_row">
+                                        <div class="okay_list_boding variants_item_drag"></div>
+                                        {$block}
+                                        <div class="okay_list_boding">
+                                            <div class="heading_label"></div>
+                                            <button id="fn_variant_save" data-product_id="{$product->id}" type="button" class="fn_variant_save fn_step-15 btn btn_small btn_blue float-md-right ml-1">
+                                                {include file='svg_icon.tpl' svgId='checked'}
+                                                <span>Save</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                {/if}
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+                <div class="box_btn_heading mt-1">
+                    <button type="button" class="btn btn_mini btn-secondary fn_add_variant">
+                        {include file='svg_icon.tpl' svgId='plus'}
+                        <span>{$btr->product_add_option|escape}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="okay_list_body_item variants_list_item fn_new_row_variant hidden">
     <div class="okay_list_row ">
         <div class="okay_list_boding variants_item_drag">
@@ -756,7 +757,7 @@
         </div>
         <div class="okay_list_boding variants_item_currency">
             <div class="heading_label">{$btr->general_currency|escape}</div>
-            <select name="variants[currency_id][]" class="selectpicker form-control">
+            <select name="variants[currency_id][]" class="form-control">
                 {foreach $currencies as $c}
                     <option value="{$c->id}" {if $c->id == 4}selected{/if} >{$c->code|escape}</option>
                 {/foreach}
@@ -804,10 +805,12 @@
 {* On document load *}
 {literal}
     <script src="design/js/autocomplete/jquery.autocomplete-min.js"></script>
-    <script src="design/js/chosen/chosen.jquery.js"></script>
+    <!--<script src="design/js/chosen/chosen.jquery.js"></script>
     <link rel="stylesheet" type="text/css" href="design/js/chosen/chosen.min.css" media="screen" />
+    -->
 <script>
-    $(window).on("load", function() {
+    // $(window).on("load", function() {
+    $(document).ready(function() {
 
         $(document).on("click", ".fn_show_images",function () {
            $(this).prev().find($(".fn_toggle_hidden")).toggleClass("hidden");
@@ -817,7 +820,7 @@
             $(this).closest(".fn_row").fadeOut(200, function() { $(this).remove(); });
             return false;
         });
-        $(".chosen").chosen('chosen-select');
+        // $(".chosen").chosen('chosen-select');
 
         $(document).on("input", ".fn_rating", function () {
             $(".fn_show_rating").html($(this).val());
@@ -977,7 +980,7 @@
         variant.find('.bootstrap-select').replaceWith(function() { return $('select', this); });
         $(document).on("click", ".fn_add_variant", function () {
            var variant_clone = variant.clone(true);
-           variant_clone.find("select").selectpicker();
+           // variant_clone.find("select").selectpicker();
            variant_clone.removeClass("hidden").removeClass("fn_new_row_variant");
            $(".variants_listadd").append(variant_clone);
             return false;
