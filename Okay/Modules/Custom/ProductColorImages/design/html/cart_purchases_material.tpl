@@ -1,0 +1,1 @@
+{if $material_purchase->variant->material}<div class="col"><span class="purchase__variant_prop_name">{$lang->variant_material_title}:</span><span class="purchase__variant_prop_value">{$material_purchase->variant->material_name}</span></div>{/if}

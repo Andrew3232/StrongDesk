@@ -1,0 +1,61 @@
+{
+  "Okay": "4.3.1",
+  "version": "1.0.0",
+  "moduleName": "Картинки товару для кольорів",
+  "vendor": {
+    "email": "work.oleinitch@gmail.com",
+    "site": ""
+  },
+  "modifications": {
+    "backend": [
+      {
+        "file": "order.tpl",
+        "changes": [
+          {
+            "find": "{if $purchase->product}",
+            "appendAfter": "{get_design_block block = \"order_variant_material\" vars=['variant' => $purchase->variant]}"
+          }
+        ]
+      },
+      {
+        "file": "product.tpl",
+        "changes": [
+          {
+            "find": "{$btr->product_promotions|escape}",
+            "closestFind": "<div class=\"row",
+            "appendBefore": "product_color_images.tpl"
+          }
+        ]
+      }
+    ],
+    "front": [
+      {
+        "file": "product.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"details_boxed__select",
+            "appendBefore": "{get_variants_material product=$product}"
+          }
+        ]
+      },
+      {
+        "file": "product_list.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"product_preview__variants",
+            "appendAfter": "{get_variants_material type='product_list' product=$product}"
+          }
+        ]
+      },
+      {
+        "file": "cart_purchases.tpl",
+        "changes": [
+          {
+            "find": "<div class=\"purchase__variant_prop\">",
+            "prepend": "{get_cart_purchases_material purchase = $purchase}"
+          }
+        ]
+      }
+    ]
+  }
+}
