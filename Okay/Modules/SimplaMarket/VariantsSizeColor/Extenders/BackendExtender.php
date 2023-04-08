@@ -23,7 +23,7 @@ class BackendExtender implements ExtensionInterface
 
     public function getProduct()
     {
-        $colorAssociations = $this->colorAssociationsEntity->find();
+        $colorAssociations = $this->colorAssociationsEntity->mappedBy('id')->find();
         $this->design->assign('color_associations', $colorAssociations);
     }
 
