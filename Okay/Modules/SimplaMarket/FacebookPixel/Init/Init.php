@@ -69,6 +69,22 @@ class Init extends AbstractInit
                     ];
                     $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                     $design->assign('fp_content_data', $jsonData);
+                    $tData = [
+                        'content_name' => ($product->name . ($product->variant->name ? " {$product->variant->name}" : "")),
+                        'content_type' => 'product',
+                        'contents' => [
+                            [
+                                'id' => (int)$product->variant->id,
+                                'content_name' => $product->variant->name,
+                                'quantity' => 1,
+                                'price' => $product->variant->price,
+                            ]
+                        ],
+                        'currency' => $mainCurrency->code,
+                        'value' => $product->variant->price
+                    ];
+                    $jsonTData = json_encode($tData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+                    $design->assign('tp_content_data', $jsonTData);
                 }
             }
         );

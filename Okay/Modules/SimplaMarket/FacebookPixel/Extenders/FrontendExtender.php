@@ -49,6 +49,7 @@ class FrontendExtender implements ExtensionInterface
 
             $contentIds = [];
             $contents = [];
+            $tContents = [];
             $numItems = 0;
             $mainCurrency =  $currenciesEntity->getMainCurrency();
             foreach ($purchases as $purchase) {
@@ -58,7 +59,14 @@ class FrontendExtender implements ExtensionInterface
                     'id' => (int) $purchase->variant->id,
                     'quantity' => (int) $purchase->amount
                 ];
+                $tContents[] = [
+                    'id' => (int) $purchase->variant->id,
+                    'content_name' => $purchase->variant->name,
+                    'quantity' => (int) $purchase->amount,
+                    'price' => (int) $purchase->variant->price,
+                ];
             }
+
             $data = [
                 'content_ids' => $contentIds,
                 'content_type' => 'product',
@@ -69,8 +77,19 @@ class FrontendExtender implements ExtensionInterface
                 'product_catalog_id'=>$this->settings->simplamarket__facebook_pixel__product_catalog_id,
             ];
             $jsonData = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+            $tData = [
+                'content_ids' => $contentIds,
+                'content_type' => 'product',
+                'contents' => $tContents,
+                'currency' => $mainCurrency->code,
+                'value' => (float) $order->total_price,
+            ];
+            $tJsonData = json_encode($tData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
             $ordersEntity->update($order->id, ['facebook_pixel__purchase_sended' => 1]);
             $this->design->assign('fp_purchase_data', $jsonData);
+            $this->design->assign('tp_purchase_data', $tJsonData);
         }
     }
 

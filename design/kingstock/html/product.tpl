@@ -1,5 +1,4 @@
 {* Product page *}
-
 <div class="fn_product product_wrap block" itemscope itemtype="http://schema.org/Product">
 
     <div class="fn_transfer f_row flex-column flex-lg-row align-items-lg-stretch product_inner">
